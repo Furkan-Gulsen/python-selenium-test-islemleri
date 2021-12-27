@@ -6,7 +6,7 @@ import time
 
 
 email = "hilal.coskun20@gmail.com"
-password =123456789321
+#password =
 #aranacak ürün
 product = "pembe lilyum çiçek buketi"
 
