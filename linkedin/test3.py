@@ -4,13 +4,6 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
-"""
-Birim(Unit) Test
-- [] LinkedIn sayfasına giriş
-- [] Email input alanına kullanıcı emaili yazılır
-- [] Şifre input alanına kullanıcı şifresi yazılır
-- [] Giriş butonuna basıldığında kullanıcının hesabı açılır
-"""
 
 class LinkedInWebTesting(unittest.TestCase):
 	# ziyaret edilecek URL'yi saklamak için değişken
