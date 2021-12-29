@@ -1,65 +1,112 @@
 # Gerekli olan kütüphanelerin içeri aktarılması
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import time
 import unittest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import random
 
 """
 Birim(Unit) Test
-- [] LinkedIn sayfasına giriş
-- [] Email input alanına kullanıcı emaili yazılır
-- [] Şifre input alanına kullanıcı şifresi yazılır
-- [] Giriş butonuna basıldığında kullanıcının hesabı açılır
+- [x] LinkedIn sayfasına giriş
+- [x] Giriş sayfası açılıyor mu kontol et
+- [x] Giriş sayfasında email, şifre ve giriş butonu görünüyor mu 
+	  ve erişilebilir mi kontrol et
+- [x] Email input alanına kullanıcı emaili yazılır
+- [x] Şifre input alanına kullanıcı şifresi yazılır
+- [x] Giriş butonuna basıldığında kullanıcının hesabı açılır
+- [x] Ana sayfa düzgün görüntüleniyor mu kontol et
+- [x] Ana sayfa da paylaşma alanı erişilebilir mi kontrol et
+- [x] Post paylaşma butonuna basılarak yazı editörü açılıyor
+- [x] Editör düzgün görüntüleniyor mu ve erişilebilir mi kontrol et
+- [x] Editör'e ilgili metin girilir
+- [x] Paylaşma butonuna erişilebilir mi kontrol et
+- [x] Paylaşma butonuna tıklanır
+- [x] Post düzgün paylaşıldı mı ve görüntüleniyor mu kontrol et 
 """
 
-# ziyaret edilecek URL'yi saklamak için değişken
-
-
-# ChromeDriver'ın bağlanması
-driver = webdriver.Chrome("/Users/furkangulsen/projects/chromedriver")
-# Tarayıcı büyütülmüş pencerede yüklenmesi
-driver.maximize_window()
-# Browserın yüklenmesi için belirli bir süre beklemelidir
-driver.implicitly_wait(5) 
-# Web sayfasının ChromeDrive ile açılması
-driver.get("https://www.linkedin.com")
-print("Title: ", driver.title)
-# Doğru URL'ye sahip sitenin yüklenip yüklenmediğini test etme
-time.sleep(3)
-
-
-def login():
+class LinkedIn(unittest.TestCase):
 	# hesap bilgilerini içeren degiskenler
 	email = "testprojesi1@gmail.com"
 	password = "beykent1997"
 
-	# Email input alanını doldurma
-	email_elem = driver.find_element_by_id('session_key')
-	email_elem.send_keys(email)
+	# paylaşılacak post içeriği
+	postText = "Birim Test "
 
-	# Şifre input alanını doldurma
-	password_elem = driver.find_element_by_id('session_password')
-	password_elem.send_keys(password)
-
-	# Giriş butonuna tıklanılır
-	login_button = driver.find_element_by_css_selector('.sign-in-form__submit-button')
-	login_button.click()
-
-
-	add_post_button = driver.find_element_by_css_selector('.artdeco-button.artdeco-button--muted.artdeco-button--4.artdeco-button--tertiary.ember-view.share-box-feed-entry__trigger')
-	add_post_button.click();
-
-	time.sleep(1)
-	post_text_area = driver.find_element_by_css_selector(".ql-editor.ql-blank")
-	post_text_area.send_keys("Birim Test Denemesi2")
-
-	time.sleep(2)
-	post_send_button = driver.find_element_by_css_selector('.share-actions__primary-action.artdeco-button.artdeco-button--2.artdeco-button--primary.ember-view')
-	post_send_button.click();
-
-login()
-time.sleep(1)
+	def setUp(self):
+		# ChromeDriver'ın bağlanması
+		self.driver = webdriver.Chrome("/Users/furkangulsen/projects/chromedriver")
+		# Tarayıcı büyütülmüş pencerede yüklenmesi
+		self.driver.maximize_window()
+		# Sunucunun yüklenmesi için belirli bir süre bekliyorum
+		self.driver.implicitly_wait(10) 
 
 
-# girişin başarılı olduğunu kontrol etmek için
-# unittest.TestCase.assertTrue(browser.find_element_by_id("main").is_enabled())
+	def test_add_item_to_cart(self):
+		# Web sayfasının ChromeDrive ile açılması
+		self.driver.get("https://www.linkedin.com")
+		# Doğru URL'ye sahip sitenin yüklenip yüklenmediğini test etme
+		self.assertLessEqual(self.driver.title, "Log In or Sign Up")
+
+		email_elem = self.driver.find_element(By.ID, 'session_key')
+		# Email input alanı erişilebilir mi kontrol et
+		self.assertTrue(email_elem.is_enabled())
+		# Email input alanını doldurma
+		email_elem.send_keys(self.email)
+
+		
+		password_elem = self.driver.find_element(By.ID, 'session_password')
+		# Password input alanı erişilebilir mi kontrol et
+		self.assertTrue(password_elem.is_enabled())
+		# Şifre input alanını doldurma
+		password_elem.send_keys(self.password)
+
+		login_button = self.driver.find_element(By.CSS_SELECTOR, '.sign-in-form__submit-button')
+		# Giriş butonu görünür mü ve tıklanılabilir mi kontrol et
+		self.assertTrue(login_button.is_displayed())
+		self.assertTrue(login_button.is_enabled())
+		# Giriş butonuna tıklanılır
+		login_button.click()
+
+
+		home_page = self.driver.find_element(By.ID,"voyager-feed")
+		# ana sayfa açıldı mı kontrol et
+		self.assertTrue(home_page.is_displayed())
+
+
+		add_post_button = self.driver.find_element(By.CSS_SELECTOR,'.artdeco-button.artdeco-button--muted.artdeco-button--4.artdeco-button--tertiary.ember-view.share-box-feed-entry__trigger')
+		# Gönderi paylaşma butonu görünür mü ve tıklanılabilir mi kontrol et
+		self.assertTrue(add_post_button.is_displayed())
+		self.assertTrue(add_post_button.is_enabled())
+		add_post_button.click();
+
+		# post paylaşma
+		time.sleep(2)
+		self.postText = self.postText + str(random.randint(0,100000))
+		post_text_area = self.driver.find_element(By.CSS_SELECTOR,".ql-editor.ql-blank")
+		# editör alanı erişilebilir mi kontrol et
+		self.assertTrue(post_text_area.is_enabled())
+		# post yazısını editöre yazma işlemi
+		post_text_area.send_keys(self.postText)
+
+		time.sleep(2)
+		post_send_button = self.driver.find_element(By.CSS_SELECTOR,'.share-actions__primary-action.artdeco-button.artdeco-button--2.artdeco-button--primary.ember-view')
+		# Gönderi paylaşma butonu görünür mü ve tıklanılabilir mi kontrol et
+		self.assertTrue(post_send_button.is_displayed())
+		self.assertTrue(post_send_button.is_enabled())
+		post_send_button.click();
+
+		# post paylaşımını kontrol etme
+		time.sleep(2)
+		post_content_div = self.driver.find_element(By.CSS_SELECTOR,'.break-words>span')
+		self.assertTrue(post_content_div.is_displayed())
+		self.assertEqual(self.postText, post_content_div.text)
+		time.sleep(3)
+		
+		
+	def tearDown(self):
+		# çıkış yapıyorum
+		self.driver.quit()
+
+if __name__ == "__main__":
+    unittest.main()
