@@ -22,7 +22,32 @@
 
 ### Hilal Coşkun - Çiçek Sepeti Testi
 
-- [] test ettiklerim
+####  Sepete Ürün Ekleme Testi
+
+- [x] Çiçek Sepeti sayfasına giriş 
+- [x] Giriş sayfasında email, şifre butonları kontrol edildi.
+- [x] Email input alanına kullanıcı emaili yazıldı.
+- [x] Şifre input alanına kullanıcı şifresi yazılır
+- [x] Giriş butonuna basıldığında kullanıcının hesabı açılır
+- [x] Ana sayfa düzgün görüntüleniyor mu kontol et
+- [x] Ana sayfada bulunan search kısmı çalışıyor mu kontrol et
+- [x] Search kısmında kullanıcının aramak istediği ürün yazılır
+- [x] Açılan sayfada doğru ürün mü geliyor kontrol et
+- [x] Ürün detayı açıldığında doğru ürün mü açılıyor kontrol et
+- [x] Ürünü sipariş verirken adres ve gün doğru seçiliyor mu kontrol et
+- [x] Sipariş var butonu doğru çalışıyor mu kontrol et
+
+#### Aynı iki ürünü sepete ekleme ve fiyatı kontrol etme 
+- [x] Aynı iki ürün sepete doğru ekleniyor mu kontrol et
+- [x] Sepette bulunan ürünlerin toplam fiyatı doğru mu kontrol et
+
+#### Favorilere Ürün Ekleme Testi
+- [x] Ürün detay sayfasında bulunan kalp ikonu doğru çalışıyor mu kontrol et
+- [x] Kalp ikonuna tıklanır
+- [x] Sayfada bulunan favorilerim sayfası butonu doğru çalışıyor mu kontrol et
+- [x] Favoriler sayfasında doğru ürün mü görüntüleniyor kontrol et
+
+
 
 ### Yunus Taha Yılmaz - Amazon Kitap Bulma Testi
 
