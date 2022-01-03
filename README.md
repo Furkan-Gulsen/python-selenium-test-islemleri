@@ -1,6 +1,6 @@
 # yazilim-kalite-guvencesi-testi-odev
 
-### Muhammed Furkan Gülşen - LinkedIn Test
+## Muhammed Furkan Gülşen - LinkedIn Test
 
 - [x] LinkedIn sayfasına giriş
 - [x] Giriş sayfası açılıyor mu kontol et
@@ -18,9 +18,8 @@
 - [x] Paylaşma butonuna tıklanır
 - [x] Post düzgün paylaşıldı mı ve görüntüleniyor mu kontrol et
 
-### Muhammed Furkan Gülşen - Amazon Test
 
-### Hilal Coşkun - Çiçek Sepeti Testi
+## Hilal Coşkun - Çiçek Sepeti Testi
 
 ####  Sepete Ürün Ekleme Testi
 
