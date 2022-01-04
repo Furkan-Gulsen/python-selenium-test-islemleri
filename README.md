@@ -45,9 +45,3 @@
 - [x] Kalp ikonuna tıklanır
 - [x] Sayfada bulunan favorilerim sayfası butonu doğru çalışıyor mu kontrol et
 - [x] Favoriler sayfasında doğru ürün mü görüntüleniyor kontrol et
-
-
-
-### Yunus Taha Yılmaz - Amazon Kitap Bulma Testi
-
-- [] test ettiklerim
