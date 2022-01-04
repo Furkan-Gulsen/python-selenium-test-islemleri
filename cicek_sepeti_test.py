@@ -8,13 +8,12 @@ import unittest, time, re
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
-email = "hilal.coskun20@gmail.com"
+# kullanıcı bilgileri
+email = ""
 password = 
 
 #aranacak ürün
 product = "pembe lilyum çiçek buketi"
-
-
 
 
 class CicekSepeti(unittest.TestCase):
@@ -132,7 +131,4 @@ if __name__ == '__main__':
     CicekSepeti.searchProduct()
     CicekSepeti.addFavorites()
     CicekSepeti.favorites()
-    #CicekSepeti.addToCart()
-    #CicekSepeti.returnAddToCart()
-
-
+    
