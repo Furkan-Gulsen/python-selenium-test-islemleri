@@ -10,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 # kullanıcı bilgileri
 email = ""
-password = 
+password = ""
 
 #aranacak ürün
 product = "pembe lilyum çiçek buketi"
@@ -75,8 +75,6 @@ class CicekSepeti(unittest.TestCase):
         self.assertTrue(button.is_displayed())
         self.assertTrue(button.is_enabled())
         self.browser.find_element(By.CLASS_NAME, "js-add-to-cart").click()
-
-
         time.sleep(2)
 
     def returnAddToCart(self):
@@ -131,4 +129,3 @@ if __name__ == '__main__':
     CicekSepeti.searchProduct()
     CicekSepeti.addFavorites()
     CicekSepeti.favorites()
-    
