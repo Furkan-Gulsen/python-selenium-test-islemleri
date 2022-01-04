@@ -10,8 +10,8 @@ import random
 
 class LinkedIn(unittest.TestCase):
 	# hesap bilgilerini içeren degiskenler
-	email = "testprojesi1@gmail.com"
-	password = "beykent1997"
+	email = ""
+	password = ""
 
 	# paylaşılacak post içeriği
 	postText = "Birim Test "
