@@ -7,62 +7,78 @@ from selenium.common.exceptions import NoSuchElementException
 class Amazon(unittest.TestCase):
     @classmethod
     def setUp(cls):
-        # Call Firefox browser
-        cls.driver = webdriver.Firefox(executable_path="directory")
+        
+        # Firefox tarayıcısı için gerekli geckodriver aranıyor
+        cls.driver = webdriver.Firefox(executable_path="/Users\Yunus\Desktop\Test dersi/geckodriver")
         cls.driver.implicitly_wait(30)
-        #Load amazon.in site
+        # Amazon sayfasının url'si tanımlanıyor
         cls.driver.get("https://www.amazon.com.tr/")
+        # Tarayıcı tam ekran olacak şekilde büyütülüyor
         cls.driver.maximize_window()
 
 
     def test_amazon(self):
 
+        first_book_title = "Şeker Portakalı"
+
         # Çerezleri kabul ediyoruz
         self.driver.find_element(By.ID,'sp-cc-accept').click()
         self.driver.implicitly_wait(5)
         time.sleep(3)
-
-        # In the search box, enter ' data catalog' and search'
-        self.driver.find_element_by_xpath("//input[@id='twotabsearchtextbox']").send_keys("Şeker Portakalı")
-        self.driver.find_element_by_xpath("//input[@id='twotabsearchtextbox']").submit()
+        
+        input_alan = self.driver.find_element(By.XPATH,"//input[@id='twotabsearchtextbox']")
+        # Arama input alanı erişilebilir mi kontrol et
+        self.assertTrue(input_alan.is_enabled())
+        # Arama kutusuna tıkla ve 'Kitap İsmi' gir
+        self.driver.find_element(By.XPATH,"//input[@id='twotabsearchtextbox']").send_keys(first_book_title)
+        # Aramayı başlat
+        self.driver.find_element(By.XPATH,"//input[@id='twotabsearchtextbox']").submit()
                                       
         print("done")
         
-        first_book_title = "Şeker Portakalı"
+        
 
 
         
         # Çıkan ilk ürüne tıklıyorum
         time.sleep(3)
-        self.driver.find_element_by_xpath("(//div[@class='sg-col-inner']//img[contains(@data-image-latency,'s-product-image')])[1]").click()
+        self.driver.find_element(By.XPATH,"(//div[@class='sg-col-inner']//img[contains(@data-image-latency,'s-product-image')])[1]").click()
 
-        #check for title
+        # Ürünün başlığı kontrol
         time.sleep(3)
-        title = self.driver.find_element_by_xpath('//*[@id="productTitle"]').text.strip()
+        title = self.driver.find_element(By.XPATH,'//*[@id="productTitle"]').text.strip()
         self.assertEqual(first_book_title,title)
         print("Title done")
     
-        # check for author
+        # Ürünün yazarı kontrol
         time.sleep(3)
-        author = self.driver.find_element_by_xpath('//*[@id="bylineInfo"]/span[1]/a').text.strip()
+        author = self.driver.find_element(By.XPATH,'//*[@id="bylineInfo"]/span[1]/a').text.strip()
         self.assertEqual(author,"Jose Mauro De Vasconcelos")
         print("Author done")
-        
-        # check for paperback price
-        #time.sleep(2)
-        ##paperback = self.driver.find_element_by_xpath('//*[@id="a-autoid-3-announce"]/span[2]/span').text.strip()
-        #paperback = paperback[:6]
-        #self.assertEqual(paperback,"29,00")
-        #print("Paperback done", paperback)
 
-        #print("Paperback = " , paperback)
+        # Ürünün dili kontrol
+        time.sleep(3)
+        language = self.driver.find_element(By.XPATH, '//*[@id="detailBullets_feature_div"]/ul/li[2]/span/span[2]').text.strip()
+        
+        self.assertEqual(language,"Türkçe")
+        print("Language done")
+        
+        # Ürünün sayfa sayısı kontrol
+        time.sleep(3)
+        pages = self.driver.find_element(By.XPATH,'//*[@id="detailBullets_feature_div"]/ul/li[3]/span/span[2]').text.strip()
+        pages = pages[:3]
+        self.assertEqual(pages,"184")
+        print("Pages done")
+
+        print("Pages = " , pages)
         print("Title = ", title)
         print("Author = ", author)
+        print("Language = ", language)
         
         
     @classmethod    
     def tearDown(cls):
-        #Close the browser
+        # Tarayıcı Kapatılıyor
         cls.driver.quit()
 
 
