@@ -73,18 +73,3 @@ if __name__ == '__main__':
     Buy.sign()
     Buy.searchProduct()
     Buy.addToCart()
-    """  
-    Buy.addFavorites()
-    """
-
-
-
-
-
-
-
-
-
-
-
-
