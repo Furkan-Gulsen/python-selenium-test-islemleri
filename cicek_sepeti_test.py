@@ -4,9 +4,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 import time
 
+# kullanıcı bilgileri
+email = ""
+password = ""
 
-email = "hilal.coskun20@gmail.com"
-#password =
 #aranacak ürün
 product = "pembe lilyum çiçek buketi"
 
