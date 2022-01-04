@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="https://selenium-python.readthedocs.io/_static/logo.png" />
+</p>
+
+> Python dilinin Selenium kütüphanesini kullanarak; Amazon, LinkedIn ve ÇiçekSepeti üzerinde test işlemleri yaptığımız bir case study reposudur.
+
+---
+
 # LinkedIn Gönderi Paylaşma Testi
 
 Selenium, linkedin.com adresine giriş yaparak sayfanın doğru görüntülenip
