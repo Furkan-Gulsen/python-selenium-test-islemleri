@@ -8,6 +8,8 @@
 
 # LinkedIn Gönderi Paylaşma Testi
 
+YouTube Videosu: https://www.youtube.com/watch?v=FFwsQForJC4
+
 Selenium, linkedin.com adresine giriş yaparak sayfanın doğru görüntülenip
 görüntülenmediğini kontrol ediyor.
 
